@@ -1,0 +1,14 @@
+#+TITLE: TODO
+#+AUTHOR: Karl Hallsby
+
+* Build Systems
+Implement different build systems:
+  * CMake
+  * Ninja (with CMake)
+  * Autotools (Autoconf & Automake)
+
+* Code Coverage
+Implement code coverage testing with ~gcov~.
+
+* Profiling
+Implement profiling with ~gprof~.
