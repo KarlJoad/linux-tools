@@ -12,3 +12,6 @@ Implement code coverage testing with ~gcov~.
 
 * Profiling
 Implement profiling with ~gprof~.
+
+* Automated Testing
+Test with [[https://www.gnu.org/software/dejagnu/][DejaGnu]].
