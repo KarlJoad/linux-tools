@@ -45,6 +45,8 @@ void USAGE() {
          "to the driver\n");
 }
 
+#define printerr(fmt, body...) fprintf(stderr, fmt, body)
+
 static char ifName[IFNAMSIZ] = {};
 static mac_addr_t dest_mac; // {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 static size_t num_frames = 0;
