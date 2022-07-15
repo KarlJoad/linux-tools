@@ -91,6 +91,13 @@ int parse_num_frames(size_t *restrict num_frames, char *restrict amount) {
     return EXIT_SUCCESS;
 }
 
+static
+void parse_cli_flags(char *argv[]) {
+    parse_human_interface(ifName, argv[1]);
+    parse_dest_mac(&dest_mac, argv[2]);
+    parse_num_frames(&num_frames, argv[3]);
+}
+
 int main(int argc, char *argv[])
 {
 	int sockfd;
@@ -101,9 +108,14 @@ int main(int argc, char *argv[])
 	struct ether_header *eh = (struct ether_header *) sendbuf;
 	struct iphdr *iph = (struct iphdr *) (sendbuf + sizeof(struct ether_header));
 	struct sockaddr_ll socket_address;
-	char ifName[IFNAMSIZ];
 
-	/* Get interface name */
+
+  if (argc < 4) {
+      USAGE();
+      return EXIT_SUCCESS;
+  }
+
+  parse_cli_flags(argv);
 	if (argc > 1)
 		strcpy(ifName, argv[1]);
 	else
