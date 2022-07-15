@@ -24,6 +24,7 @@
 #include <net/if.h>
 #include <netinet/ether.h>
 
+
 #define MY_DEST_MAC0	0x00
 #define MY_DEST_MAC1	0x00
 #define MY_DEST_MAC2	0x00
@@ -42,6 +43,18 @@ void USAGE() {
   printf("\trecvr_MAC is the MAC address of the receiving device\n");
   printf("\tnum_Ethernet_Frames is the number of raw Ethernet frames to submit "
          "to the driver\n");
+}
+
+static char ifName[IFNAMSIZ] = {};
+
+int parse_human_interface(char *restrict ifName, char *restrict name) {
+  /* if (strlen(name) > IFNAMSIZ) { */
+
+  /*   return -1; */
+  /* } */
+    fprintf(stderr, "%s", "Test\n");
+    ifName = name;
+    return 0;
 }
 
 int main(int argc, char *argv[])
