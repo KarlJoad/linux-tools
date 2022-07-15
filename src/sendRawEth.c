@@ -47,6 +47,7 @@ void USAGE() {
 
 static char ifName[IFNAMSIZ] = {};
 static mac_addr_t dest_mac; // {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+static size_t num_frames = 0;
 
 int parse_human_interface(char *restrict ifName, char *restrict name) {
   /* if (strlen(name) > IFNAMSIZ) { */
@@ -79,6 +80,15 @@ int parse_dest_mac(mac_addr_t *restrict dest_mac, char *restrict mac) {
   }
 
   return EXIT_SUCCESS;
+}
+
+static inline
+int parse_num_frames(size_t *restrict num_frames, char *restrict amount) {
+    if (sscanf(amount, "%zu", num_frames) != 0) {
+        fprintf(stderr, "%s", "Cannot parse number of frames to send!\n");
+        return EXIT_FAILURE;
+    }
+    return EXIT_SUCCESS;
 }
 
 int main(int argc, char *argv[])
