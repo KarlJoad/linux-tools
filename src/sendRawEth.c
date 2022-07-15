@@ -24,6 +24,9 @@
 #include <net/if.h>
 #include <netinet/ether.h>
 
+typedef struct mac_addr {
+  uint8_t addr[6];
+}  mac_addr_t;
 
 #define MY_DEST_MAC0	0x00
 #define MY_DEST_MAC1	0x00
