@@ -34,6 +34,16 @@
 #define DEFAULT_IF	"eno1np0"
 #define BUF_SIZ		1024
 
+static
+void USAGE() {
+  printf("sendRawEth <sender_IF> <recvr_MAC> <num_Ethernet_Frames>\n");
+  printf("\tsender_IF is the human-readable network interface name of the "
+         "sender\n");
+  printf("\trecvr_MAC is the MAC address of the receiving device\n");
+  printf("\tnum_Ethernet_Frames is the number of raw Ethernet frames to submit "
+         "to the driver\n");
+}
+
 int main(int argc, char *argv[])
 {
 	int sockfd;
