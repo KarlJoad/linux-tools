@@ -46,6 +46,7 @@ void USAGE() {
 }
 
 static char ifName[IFNAMSIZ] = {};
+static mac_addr_t dest_mac; // {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
 int parse_human_interface(char *restrict ifName, char *restrict name) {
   /* if (strlen(name) > IFNAMSIZ) { */
@@ -55,6 +56,29 @@ int parse_human_interface(char *restrict ifName, char *restrict name) {
     fprintf(stderr, "%s", "Test\n");
     ifName = name;
     return 0;
+}
+
+static inline
+int parse_dest_mac(mac_addr_t *restrict dest_mac, char *restrict mac) {
+  char mac_byte[6] = {0};
+  for (unsigned i = 0; i < 6; i++) {
+      char *tok = NULL;
+      tok = strtok(mac, ":");
+      // We only enter this when the input MAC is malformed.
+      if (tok == NULL) {
+          fprintf(stderr, "%s\n", "Malformed destination MAC Address");
+          return EXIT_FAILURE;
+      }
+      mac_byte[i] = *tok;
+      tok = NULL;
+      printf("MAC Byte %u: %c\n", i, mac_byte[i]);
+  }
+
+  for (unsigned i = 0; i < 6; i++) {
+      dest_mac->addr[i] = atoi(mac_byte + i);
+  }
+
+  return EXIT_SUCCESS;
 }
 
 int main(int argc, char *argv[])
