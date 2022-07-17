@@ -3,7 +3,13 @@ CXX := g++
 LD := ld
 AS := as
 
-CC_FLAGS :=-g
+CC_FLAGS := -g
+
+CC_WARN_FLAGS := -Wall #-Wpedantic
+CC_FLAGS += $(CC_WARN_FLAGS)
+
+CC_STD_FLAGS := -std=c17
+CC_FLAGS += $(CC_STD_FLAGS)
 
 ifdef DEBUG
 CC_FLAGS += -Og
