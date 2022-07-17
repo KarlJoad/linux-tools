@@ -50,7 +50,7 @@ void USAGE() {
 
 #define printerr(fmt, body...) fprintf(stderr, fmt, body)
 
-static char ifName[IFNAMSIZ] = {};
+static char ifName[IF_NAMESIZE] = {};
 static mac_addr_t dest_mac; // {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 static size_t num_frames = 0;
 
@@ -133,12 +133,12 @@ int main(int argc, char *argv[])
 
 	/* Get the index of the interface to send on */
 	memset(&if_idx, 0, sizeof(struct ifreq));
-	strncpy(if_idx.ifr_name, ifName, IFNAMSIZ-1);
+	strncpy(if_idx.ifr_name, ifName, IF_NAMESIZE-1);
 	if (ioctl(sockfd, SIOCGIFINDEX, &if_idx) < 0)
 	    perror("SIOCGIFINDEX");
 	/* Get the MAC address of the interface to send on */
 	memset(&if_mac, 0, sizeof(struct ifreq));
-	strncpy(if_mac.ifr_name, ifName, IFNAMSIZ-1);
+	strncpy(if_mac.ifr_name, ifName, IF_NAMESIZE-1);
 	if (ioctl(sockfd, SIOCGIFHWADDR, &if_mac) < 0)
 	    perror("SIOCGIFHWADDR");
 
